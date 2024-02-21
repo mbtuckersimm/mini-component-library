@@ -17,6 +17,10 @@ const radii = {
   large: '8px',
 }
 
+const cutoff = (value) => {
+  // value should be between 0 and 1 here
+  return Math.max(100 * value - 99, 0)
+}
 
 const Wrapper = styled.progress`
   width: 370px;
@@ -32,7 +36,7 @@ const Wrapper = styled.progress`
 
   &::-webkit-progress-value {
     background: ${COLORS.primary};
-    border-radius: 4px 0 0 4px;
+    border-radius: 4px ${p => cutoff(p.value) * 4}px ${p => cutoff(p.value) * 4}px 4px;
   }
 `
 
